@@ -1,4 +1,7 @@
 const form = document.querySelector("#form");
+const userType = document.querySelector("#userType");
+const studentFields = document.getElementById("studentFields");
+const employeeFields = document.getElementById("employeeFields");
 
 const validateEmail = (email) => {
   return String(email)
@@ -12,9 +15,22 @@ function isNumber(input) {
   var regex = /^\d+$/;
   return regex.test(input);
 }
+
 function handleSubmit(values) {
   console.log(values);
 }
+
+userType.addEventListener("change", function () {
+  const value = userType.value;
+  studentFields.classList.add("hidden");
+  employeeFields.classList.add("hidden");
+
+  if (value === "student") {
+    studentFields.classList.remove("hidden");
+  } else if (value === "employee") {
+    employeeFields.classList.remove("hidden");
+  }
+});
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -41,7 +57,29 @@ form.addEventListener("submit", (e) => {
       } else if (element.name === "phone" && !isNumber(value)) {
         errorMessage(element, "Zehmet olmasa reqem daxil et ");
         error++;
-      }else if (some) {
+      }
+      // Conditional validation
+      else if (
+        userType.value === "student" &&
+        element.name === "studentId" &&
+        !value
+      ) {
+        errorMessage(
+          element,
+          message || "Zehmet olmasa student ID-ni daxil edin"
+        );
+        error++;
+      } else if (
+        userType.value === "employee" &&
+        element.name === "employeeId" &&
+        !value
+      ) {
+        errorMessage(
+          element,
+          message || "Zehmet olmasa employee ID-ni daxil edin"
+        );
+        error++;
+      } else if (some) {
         const someInput = form.querySelector(`[name="${some}"]`);
         if (
           someInput &&
@@ -61,7 +99,7 @@ form.addEventListener("submit", (e) => {
 function errorMessage(element, message) {
   element.parentElement.insertAdjacentHTML(
     "beforeend",
-    `<p class='text-red-500'>${message}</p`
+    `<p class='text-red-500'>${message}</p>`
   );
   element.classList.add("border-red-500");
 }

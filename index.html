@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>User Register Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
@@ -52,6 +52,40 @@
             />
           </div>
           <div>
+            <label class="flex mb-[3px] font-bold text-[16px]">User Type</label>
+            <select
+              name="userType"
+              id="userType"
+              class="h-[40px] w-full rounded-md border outline-none pl-2"
+            >
+              <option value="">Select...</option>
+              <option value="student">Student</option>
+              <option value="employee">Employee</option>
+            </select>
+          </div>
+          <div id="studentFields" class="hidden">
+            <label class="flex mb-[3px] font-bold text-[16px]"
+              >Student ID</label
+            >
+            <input
+              name="studentId"
+              type="text"
+              data-message="Zehmet olmasa student ID-ni daxil edin"
+              class="h-[40px] w-full rounded-md border outline-none pl-2"
+            />
+          </div>
+          <div id="employeeFields" class="hidden">
+            <label class="flex mb-[3px] font-bold text-[16px]"
+              >Employee ID</label
+            >
+            <input
+              name="employeeId"
+              type="text"
+              data-message="Zehmet olmasa employee ID-ni daxil edin"
+              class="h-[40px] w-full rounded-md border outline-none pl-2"
+            />
+          </div>
+          <div>
             <label class="flex mb-[3px] font-bold text-[16px]">Password</label>
             <input
               name="password"
@@ -70,6 +104,7 @@
               class="h-[40px] w-full rounded-md border outline-none pl-2"
             />
           </div>
+
           <div>
             <button
               type="submit"
