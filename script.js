@@ -1,5 +1,62 @@
 const form = document.querySelector("#form");
-
+const formContent = document.querySelector("#form-content");
+const formObject = [
+  {
+    type: "input",
+    name: "name",
+    label: "Name",
+    message: "Please do not leave the name field empty",
+  },
+  {
+    type: "input",
+    name: "surname",
+    label: "Surname",
+    message: "Please do not leave the surname field empty",
+  },
+  {
+    type: "input",
+    name: "phone",
+    label: "Phone",
+    message: "Please enter a valid phone number",
+  },
+  {
+    type: "input",
+    name: "email",
+    label: "Email",
+    message: "Please enter a valid email address",
+  },
+  {
+    type: "input",
+    name: "age",
+    label: "Age",
+    message: "Please do not leave the age field empty",
+  },
+  {
+    type: "select",
+    name: "hobbi",
+    label: "Hobby",
+    options: [
+      { value: "footbal", name: "Football" },
+      { value: "tennis", name: "Tennis" },
+      { value: "basketball", name: "Basketball" },
+    ],
+    message: "Please select a hobby",
+  },
+  {
+    type: "input",
+    name: "password",
+    label: "Password",
+    message: "Please enter a password",
+    min: 6,
+  },
+  {
+    type: "input",
+    name: "rpassword",
+    label: "RPassword",
+    message: "Please re-enter your password",
+    some: "password",
+  },
+];
 const validateEmail = (email) => {
   return String(email)
     .toLowerCase()
@@ -41,7 +98,7 @@ form.addEventListener("submit", (e) => {
       } else if (element.name === "phone" && !isNumber(value)) {
         errorMessage(element, "Zehmet olmasa reqem daxil et ");
         error++;
-      }else if (some) {
+      } else if (some) {
         const someInput = form.querySelector(`[name="${some}"]`);
         if (
           someInput &&
@@ -72,3 +129,51 @@ function removeErrorMessage(element) {
     element.classList.remove("border-red-500");
   }
 }
+const formElements = (element) => {
+  if (element.type === "input") {
+    return formInput(element);
+  } else if (element.type === "select") {
+    return formSelect(element);
+  } else {
+    console.error(`Unsupported element type: ${element.type}`);
+    return "";
+  }
+};
+
+const formInput = (element) => {
+  return `
+    <input
+      name="${element.name}"
+      data-message="${element.message || ""}"
+   data-min="${element.min || ""}"
+   data-some="${element.some || ""}"
+      type="text"
+      class="h-[40px] w-full rounded-md border outline-none pl-2"
+    />`;
+};
+
+const formSelect = (element) => {
+  let html = "";
+  for (let option of element.options) {
+    html += `<option value="${option.value}">${option.name}</option>`;
+  }
+  return `
+    <select name="${
+      element.name
+    }" class="h-[40px] w-full rounded-md border outline-none pl-2"${
+    element.multiple ? " multiple" : ""
+  }>
+        ${html}
+    </select>`;
+};
+
+const formStart = () => {
+  for (let el of formObject) {
+    formContent.innerHTML += `
+      <div>
+        <label class="flex mb-[3px] font-bold text-[16px]">${el.label}</label>
+        ${formElements(el)}
+      </div>`;
+  }
+};
+formStart();

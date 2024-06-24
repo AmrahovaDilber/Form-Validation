@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>User Register Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
@@ -15,61 +15,7 @@
       </div>
       <form id="form">
         <div class="p-[17px] space-y-[17px]">
-          <div>
-            <label class="flex mb-[3px] font-bold text-[16px]">Name</label>
-            <input
-              name="name"
-              data-message="Zehmet olmasa adi bos buraxmayin"
-              type="text"
-              class="h-[40px] w-full rounded-md border outline-none pl-2"
-            />
-          </div>
-          <div>
-            <label class="flex mb-[3px] font-bold text-[16px]">Surname</label>
-            <input
-              name="surname"
-              data-min="6"
-              data-message="Zehmet olmasa soyadi bos buraxmayin"
-              type="text"
-              class="h-[40px] w-full rounded-md border outline-none pl-2"
-            />
-          </div>
-          <div>
-            <label class="flex mb-[3px] font-bold text-[16px]">Phone</label>
-            <input
-              name="phone"
-              data-message="Zehmet olmasa nomreni bos buraxmayin"
-              type="text"
-              class="h-[40px] w-full rounded-md border outline-none pl-2"
-            />
-          </div>
-          <div>
-            <label class="flex mb-[3px] font-bold text-[16px]">Email</label>
-            <input
-              name="email"
-              type="text"
-              class="h-[40px] w-full rounded-md border outline-none pl-2"
-            />
-          </div>
-          <div>
-            <label class="flex mb-[3px] font-bold text-[16px]">Password</label>
-            <input
-              name="password"
-              type="text"
-              class="h-[40px] w-full rounded-md border outline-none pl-2"
-            />
-          </div>
-          <div>
-            <label class="flex mb-[3px] font-bold text-[16px]"
-              >Repeat Password</label
-            >
-            <input
-              data-some="password"
-              name="rpassword"
-              type="text"
-              class="h-[40px] w-full rounded-md border outline-none pl-2"
-            />
-          </div>
+          <div id="form-content"></div>
           <div>
             <button
               type="submit"
